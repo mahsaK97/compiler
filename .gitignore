@@ -1,0 +1,8 @@
+ECHO is on.
+
+bin/
+obj/
+*.exe
+*.cbp
+*.depend
+*.layout
