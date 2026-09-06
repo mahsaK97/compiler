@@ -8,7 +8,7 @@ Lexer::Lexer(std::string source)
 }
 
 
-std::vector<Token> Lexer::scanToken()
+std::vector<Token> Lexer::scanTokens()
 {
     while(!IsAtEnd())
     {
@@ -132,7 +132,7 @@ void Lexer::scanToken()
         case '/':
             if(match('/'))
             {
-                while(peek() !='\n' && !isAtEnd())
+                while(peek() !='\n' && !IsAtEnd())
                 {
                     advance();
                 }
@@ -181,7 +181,7 @@ void Lexer::scanToken()
             break;
 
         case '|':
-           if(match('|')) ;
+           if(match('|'))
              AddToken(Token_type::OR_OR);
              break;
 
