@@ -10,7 +10,7 @@ Lexer::Lexer(std::string source)
 
 std::vector<Token> Lexer::scanToken()
 {
-    while(!IsAtEnd)
+    while(!IsAtEnd())
     {
         start = current;
         scanToken();
@@ -28,7 +28,7 @@ std::vector<Token> Lexer::scanToken()
                      );
 
 
-    return Token_type;
+    return Tokens;
 }
 
 
@@ -37,7 +37,7 @@ std::vector<Token> Lexer::scanToken()
 
 bool Lexer::IsAtEnd()
 {
-    return current=>source.length();
+    return current >= source.length();
 }
 
 
@@ -54,7 +54,7 @@ char Lexer::advance()
 
 char Lexer::peek()
 {
-    if(isAtEnd())
+    if(IsAtEnd())
     {
         return '\0';
     }
@@ -162,26 +162,28 @@ void Lexer::scanToken()
 
         case '=':
             AddToken(match('=') ?Token_type::EQUAL_EQUAL
-                     :EQUAL);
+                     :Token_type::EQUAL);
             break;
 
         case '>':
             AddToken(match('=') ?Token_type::GREATER_EQUAL
-                     :GREATER);
+                     :Token_type::GREATER);
             break;
 
         case '<':
             AddToken(match('=') ?Token_type::LESS_EQUAL
-                     :LESS);
+                     :Token_type::LESS);
             break;
 
         case '&':
-            AddToken(match('&') Token_type::AND_AND);
+            if(match('&'))
+                AddToken(Token_type::AND_AND);
             break;
 
         case '|':
-            AddToken(match('|') Token_type::OR_OR);
-            break;
+           if(match('|')) ;
+             AddToken(Token_type::OR_OR);
+             break;
 
 
     }

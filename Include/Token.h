@@ -1,7 +1,7 @@
 #ifndef TOKEN_H
 #define TOKEN_H
 
-#include <string.h>
+#include <string>
 
 
 enum class Token_type
@@ -30,7 +30,7 @@ enum class Token_type
    LESS,
    GREATER,
 
-   BABG_EQUAL,
+   BANG_EQUAL,
    EQUAL_EQUAL,
 
    LESS_EQUAL,
@@ -39,7 +39,7 @@ enum class Token_type
    AND_AND,
    OR_OR,
 
-   IDETIFIRE;
+   IDETIFIER,
    STRING,
    NUMBER,
 

@@ -12,7 +12,7 @@ class Lexer
 private:
 
     std::string source;
-    std::vector <Token> tokens;
+    std::vector<Token>tokens;
 
     int start =0;
     int current = 0;
@@ -22,7 +22,7 @@ private:
 public:
 
     Lexer(std::string source);
-    std::vector <Token> scanToken();
+    std::vector <Token> scanTokens();
 
 
 
@@ -37,7 +37,7 @@ private:
     bool IsAtEnd();
 
 
-    void AddToken(Token_type type, std::string literal);
+    void AddToken(Token_type type, std::string literal = "");
     void Identifier();
     void Number();
     void String();
