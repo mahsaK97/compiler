@@ -1,5 +1,7 @@
-#include "Lexer.h"
+#include <iostream>
 
+#include "../Include/Lexer.h"
+#include "../Include/Token.h"
 
 Lexer::Lexer(std::string source)
 {
@@ -32,24 +34,16 @@ std::vector<Token> Lexer::scanTokens()
 }
 
 
-
-
-
 bool Lexer::IsAtEnd()
 {
     return current >= source.length();
 }
 
 
-
-
-
-
 char Lexer::advance()
 {
     return source[current++];
 }
-
 
 
 char Lexer::peek()
@@ -75,7 +69,22 @@ char Lexer::peekNext()
 }
 
 
+bool Lexer::match(char excepted)
+{
+    if(IsAtEnd())
+    {
+        return false;
+    }
 
+
+    if(source.current != char excepted)
+    {
+        return true;
+    }
+
+    current++;
+    return true;
+}
 
 
 void Lexer::scanToken()
@@ -186,10 +195,50 @@ void Lexer::scanToken()
              break;
 
 
+        default:
+            std:::cerr << "Unexpected character '" << c
+            <<"'at line"<<line<<std::endl;
+            break;
+
+
     }
 }
 
 
+
+bool Lexer::IsAlpha(char c)
+{
+    return(c>='a' && c <='z') ||
+          (c>= 'A' && c <= 'Z') ||
+          c == '_';
+}
+
+
+bool Lexer::IsAlphaNumber(char c)
+{
+    return IsAlpha(c) || IsDigit(c);
+}
+
+
+bool Lexer::IsNumber(char c)
+{
+    return (c>='0' && c<='9');
+}
+
+void Lexer:identifier()
+{
+    while(IsAlphaNumber(peek()))
+    {
+        advance();
+    }
+
+    std::string text = source.substr(
+                                     start,
+                                     current - start
+                                     );
+
+
+}
 
 
 
