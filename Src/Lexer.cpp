@@ -30,7 +30,7 @@ std::vector<Token> Lexer::scanTokens()
                      );
 
 
-    return Tokens;
+    return tokens;
 }
 
 
@@ -77,9 +77,9 @@ bool Lexer::match(char excepted)
     }
 
 
-    if(source.current != char excepted)
+    if(source[current]!=char excepted)
     {
-        return true;
+        return false;
     }
 
     current++;
@@ -87,9 +87,58 @@ bool Lexer::match(char excepted)
 }
 
 
+
+void Lexer::AddToken(Token_type type)
+{
+    std::string text = source.substr(start, current - start);
+    tokens.push_back
+    (
+      Token(
+           type,
+           text,
+           "",
+           line
+           )
+     );
+}
+
+
+
+
+void Lexer::AddToken(Token_type type, std::string literal)
+{
+    std::string text = source.substr(start, current- start);
+
+    tokens.push_back
+    (
+       Token
+       (
+         type,
+         text,
+         literal,
+         line
+        )
+     );
+}
+
 void Lexer::scanToken()
 {
     char c = advance();
+
+
+
+    if(IsDigit(c))
+    {
+        Number();
+        return;
+    }
+
+
+    if(IsAlpha(c))
+    {
+        Identifier();
+        return;
+    }
 
 
     switch (c)
@@ -196,12 +245,13 @@ void Lexer::scanToken()
 
 
         default:
-            std:::cerr << "Unexpected character '" << c
+            std::cerr << "Unexpected character '" << c
             <<"'at line"<<line<<std::endl;
             break;
 
 
     }
+
 }
 
 
@@ -220,12 +270,41 @@ bool Lexer::IsAlphaNumber(char c)
 }
 
 
-bool Lexer::IsNumber(char c)
+bool Lexer::IsDigit(char c)
 {
     return (c>='0' && c<='9');
 }
 
-void Lexer:identifier()
+
+void Lexer::Number()
+{
+    while(IsDigit(peek()))
+    {
+        advance();
+    }
+
+    if(peek() == '.' && IsDigit(peekNext()))
+    {
+        advance();
+
+
+
+        while(IsDigit(peek()))
+        {
+             advance();
+        }
+    }
+
+   AddToken(Token_type::NUMBER);
+
+
+}
+
+
+
+
+
+void Lexer::Identifier()
 {
     while(IsAlphaNumber(peek()))
     {
@@ -237,6 +316,62 @@ void Lexer:identifier()
                                      current - start
                                      );
 
+
+
+    if(text == "let")
+       {
+           AddToken(Token_type::LET);
+       }
+
+    else if(text == "string")
+    {
+        AddToken(Token_type::STRING_TYPE);
+    }
+
+    else if(text == "bool")
+    {
+        AddToken(Token_type::BOOL);
+    }
+
+    else if(text == "function")
+    {
+        AddToken(Token_type::FUNCTION);
+    }
+
+    else if(text == "return")
+    {
+        AddToken(Token_type::RETURN);
+    }
+    else if(text == "print")
+    {
+        AddToken(Token_type::PRINT);
+    }
+    else if(text == "if")
+    {
+        AddToken(Token_type::IF);
+    }
+    else if(text == "else")
+    {
+        AddToken(Token_type::ELSE);
+    }
+    else if(text == "while")
+    {
+        AddToken(Token_type::WHILE);
+    }
+
+    else if(text == "true")
+    {
+        AddToken(Token_type::TRUE);
+    }
+    else if(text == "false")
+    {
+        AddToken(Token_type::FALSE);
+    }
+
+    else
+    {
+        AddToken(Lexer::Identifier);
+    }
 
 }
 

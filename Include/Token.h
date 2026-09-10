@@ -39,7 +39,7 @@ enum class Token_type
    AND_AND,
    OR_OR,
 
-   IDEnTIFIER,
+   IDENTIFIER,
    STRING,
    NUMBER,
 
