@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "lexer.h"
+#include "../Include/Token.h"
 
 
 int main()

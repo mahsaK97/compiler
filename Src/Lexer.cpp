@@ -77,7 +77,7 @@ bool Lexer::match(char excepted)
     }
 
 
-    if(source[current]!=char excepted)
+    if(source[current]!= excepted)
     {
         return false;
     }
@@ -235,13 +235,35 @@ void Lexer::scanToken()
 
         case '&':
             if(match('&'))
+            {
                 AddToken(Token_type::AND_AND);
+            }
+
+             else
+            {
+                std::cerr << "Unexpected '&' at line "
+                << line << std::endl;
+            }
+
             break;
 
         case '|':
            if(match('|'))
-             AddToken(Token_type::OR_OR);
+           {
+               AddToken(Token_type::OR_OR);
+           }
+
+
+            else
+           {
+                std::cerr << "Unexpected '&' at line "
+                << line << std::endl;
+           }
              break;
+
+        case '"':
+            String();
+            break;
 
 
         default:
@@ -300,7 +322,36 @@ void Lexer::Number()
 
 }
 
+void Lexer::String()
+{
+    while(peek() != '"' && !IsAtEnd())
+    {
+        if(peek() == '\n')
+        {
+            line++;
+        }
 
+        advance();
+
+    }
+
+    if(IsAtEnd()
+       {
+           std::cerr<< "Unterminated string at line"
+           << line<< std::endl;
+
+           return;
+       }
+
+       advance();
+
+
+       std::string value = source.substr(
+                                         start +1,
+                                         current -start - 2
+                                         );
+        AddToken(Token_type::STRING,value);
+}
 
 
 
@@ -370,7 +421,7 @@ void Lexer::Identifier()
 
     else
     {
-        AddToken(Lexer::Identifier);
+        AddToken(Lexer::IDENTIFIER);
     }
 
 }
