@@ -86,25 +86,6 @@ bool Lexer::match(char excepted)
     return true;
 }
 
-
-
-void Lexer::AddToken(Token_type type)
-{
-    std::string text = source.substr(start, current - start);
-    tokens.push_back
-    (
-      Token(
-           type,
-           text,
-           "",
-           line
-           )
-     );
-}
-
-
-
-
 void Lexer::AddToken(Token_type type, std::string literal)
 {
     std::string text = source.substr(start, current- start);
@@ -335,7 +316,7 @@ void Lexer::String()
 
     }
 
-    if(IsAtEnd()
+    if(IsAtEnd())
        {
            std::cerr<< "Unterminated string at line"
            << line<< std::endl;
@@ -421,7 +402,7 @@ void Lexer::Identifier()
 
     else
     {
-        AddToken(Lexer::IDENTIFIER);
+        AddToken(Token_type::IDENTIFIER);
     }
 
 }
