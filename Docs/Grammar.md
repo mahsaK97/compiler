@@ -12,10 +12,9 @@ exprStmt
  
 |block
 
-|stringDecl
+|typeDecl
 |functionDecl
-|returnDecl
-|boolDecl ;
+|returnDecl;
 
 
 
