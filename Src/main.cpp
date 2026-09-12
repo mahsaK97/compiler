@@ -1,13 +1,13 @@
 #include <iostream>
 
-#include "../Include/Token.h"
+#include "../Include/Lexer.h"
 
 
 int main()
 {
     std::string source = "let x = 234";
     Lexer lexer(source);
-    std::vetor<Token> tokens = lexer.scanTokens();
+    std::vector<Token> tokens = lexer.scanTokens();
 
     for(const auto &token :tokens)
     {

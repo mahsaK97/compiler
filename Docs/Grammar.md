@@ -7,12 +7,11 @@ statement      =
 exprStmt
  
 |printStmt
-| ifStmt
+|ifStmt
 |whileStmt
  
 |block
- 
-|varDecl 
+
 |stringDecl
 |functionDecl
 |returnDecl
@@ -29,10 +28,7 @@ returnDecl=  "return"  expression?  ";"  ;
 
 
 arguments= expression ( "," expression )*;           
-arrayLiteral= "["  argument?  "]" ;                                                                                                                                           
-stringDecl = "string"  IDENTIFIER "="  expression  ";" ;
-
-boolDecl= "bool" IDENTIFIER "="  expression ";" ;
+arrayLiteral= "["  arguments?  "]" ;
 
 exprStmt       = expression ";" ;
 
