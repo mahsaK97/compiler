@@ -69,7 +69,7 @@ char Lexer::peekNext()
 }
 
 
-bool Lexer::match(char excepted)
+bool Lexer::match(char excepeted)
 {
     if(IsAtEnd())
     {
@@ -77,7 +77,7 @@ bool Lexer::match(char excepted)
     }
 
 
-    if(source[current]!= excepted)
+    if(source[current]!= excepeted)
     {
         return false;
     }
