@@ -157,4 +157,39 @@ class Parser
 public:
     Parser(::std::vector<Token> tokens);
     std::vector<std::unique_ptr<Stms>>Parser;
+
+private:
+    std::vector<Token> tokens;
+    int current = 0;
+
+
+
+    std::unique_ptr<Stms> statement();
+    std::unique_ptr<Stms> TypeDeclStatement();
+    std::unique_ptr<Stms> FunctionDeclStatement();
+    std::unique_ptr<Stms> ReturnStatement();
+    std::unique_ptr<Stms> PrintStatement();
+    std::unique_ptr<Stms> IfStatement();
+    std::unique_ptr<Stms> whileStatement();
+    std::unique_ptr<Stms> exprStatement();
+    std::vector<std::unique_ptr<Stms>>block():
+
+
+
+    std::unique_ptr<Expr> expression();
+    std::unique_ptr<Expr> assignment();
+    std::unique_ptr<Expr> logicOr();
+    std::unique_ptr<Expr> logicAnd();
+    std::unique_ptr<Expr> equality();
+    std::unique_ptr<Expr> comparition();
+    std::unique_ptr<Expr> term();
+    std::unique_ptr<Expr> factor();
+    std::unique_ptr<Expr> logicAnd();
+
+
+
+
+
+
+
 };
