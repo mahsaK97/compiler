@@ -184,7 +184,25 @@ private:
     std::unique_ptr<Expr> comparition();
     std::unique_ptr<Expr> term();
     std::unique_ptr<Expr> factor();
-    std::unique_ptr<Expr> logicAnd();
+    std::unique_ptr<Expr> unary();
+    std::unique_ptr<Expr> call();
+    std::unique_ptr<Expr> primary();
+
+
+
+    bool match(std::vector<Token_type> tokens);
+    bool check(Token_type type);
+
+    Token advance();
+    Token peek();
+    Token previous();
+
+    bool isAtEnd();
+
+    Token consume(Token_type type, std::string message);
+
+
+
 
 
 
