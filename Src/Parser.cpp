@@ -72,3 +72,30 @@ std::unique_ptr<Expr> Parser::term()
 
         return expr;
 }
+
+std::unique_ptr<Stms>Parser::statement()
+{
+    if(match({Token_type::PRINT})) return printStatement;
+    if(match({Token_type::IF})) return ifStatement;
+    if(match({Token_type::WHILE})) return whileStatement;
+    if(match({Token_type::FUNCTION})) return functionDeclStatement;
+    if(match({Token_type::RETURN})) return returnStatement;
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
