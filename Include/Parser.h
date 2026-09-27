@@ -1,5 +1,9 @@
-#include <string>
+#pragma once
 
+
+#include <string>
+#include <vector>
+#include <memory>
 
 #include "Token.h"
 #include "Lexer.h"
@@ -22,8 +26,6 @@ public:
 
 };
 
-
-
 class UnaryExpr : public Expr
 {
 public:
@@ -37,7 +39,6 @@ public:
     std::string value;
     Token_type type;
 };
-
 
 class VariableExpr : public Expr
 {
@@ -53,15 +54,12 @@ public:
     std::unique_ptr<Expr>value;
 };
 
-
-
 class CallExpr : public Expr
 {
 public:
     std::unique_ptr<Expr> callee;
     std::vector<std::unique_ptr<Expr>>arguments;
 };
-
 
 class ArrayExpr :public Expr
 {
@@ -77,10 +75,6 @@ public:
     std::unique_ptr<Expr> index;
 };
 
-
-
-
-
 class Stms
 {
 public:
@@ -88,17 +82,16 @@ public:
 
 };
 
-
 class ExprStms : public Stms
 {
 public:
-    std::unique_ptr<Expr> expreesion;
+    std::unique_ptr<Expr> Expression;
 };
 
 class Printstms :public Stms
 {
 public:
-    std::unique_ptr<Expr> expression;
+    std::unique_ptr<Expr> Expression;
 
 };
 
@@ -114,7 +107,7 @@ public:
 class BlockStms :public Stms
 {
 public:
-    std::vector<std::unique_ptr<Stms>> statement;
+    std::vector<std::unique_ptr<Stms>> Statement;
 };
 
 
@@ -149,14 +142,11 @@ public:
     std::unique_ptr<Expr> value;
 };
 
-
-
-
 class Parser
 {
 public:
     Parser(::std::vector<Token> tokens);
-    std::vector<std::unique_ptr<Stms>>Parser;
+    std::vector<std::unique_ptr<Stms>>parser();
 
 private:
     std::vector<Token> tokens;
@@ -164,15 +154,15 @@ private:
 
 
 
-    std::unique_ptr<Stms> statement();
+    std::unique_ptr<Stms> Statement();
     std::unique_ptr<Stms> TypeDeclStatement();
     std::unique_ptr<Stms> FunctionDeclStatement();
     std::unique_ptr<Stms> ReturnStatement();
     std::unique_ptr<Stms> PrintStatement();
     std::unique_ptr<Stms> IfStatement();
-    std::unique_ptr<Stms> whileStatement();
-    std::unique_ptr<Stms> exprStatement();
-    std::vector<std::unique_ptr<Stms>>block():
+    std::unique_ptr<Stms> WhileStatement();
+    std::unique_ptr<Stms> ExprStatement();
+    std::vector<std::unique_ptr<Stms>>Block();
 
 
 
@@ -181,7 +171,7 @@ private:
     std::unique_ptr<Expr> logicOr();
     std::unique_ptr<Expr> logicAnd();
     std::unique_ptr<Expr> equality();
-    std::unique_ptr<Expr> comparition();
+    std::unique_ptr<Expr> comparison();
     std::unique_ptr<Expr> term();
     std::unique_ptr<Expr> factor();
     std::unique_ptr<Expr> unary();
@@ -190,7 +180,7 @@ private:
 
 
 
-    bool match(std::vector<Token_type> tokens);
+    bool match(std::vector<Token_type> types);
     bool check(Token_type type);
 
     Token advance();
@@ -200,14 +190,5 @@ private:
     bool isAtEnd();
 
     Token consume(Token_type type, std::string message);
-
-
-
-
-
-
-
-
-
 
 };
