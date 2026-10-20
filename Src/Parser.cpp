@@ -1,4 +1,4 @@
-#include "..../Include/Parser.h"
+#include "../Include/Parser.h"
 
 bool Parser::isAtEnd()
 {
@@ -24,7 +24,7 @@ Token Parser::advance()
 
 bool Parser::check(Token_type type)
 {
-    if(isAtEnd()) return false:
+    if(isAtEnd()) return false;
     return peek().type == type;
 }
 
@@ -38,7 +38,7 @@ bool Parser::match(std::vector<Token_type> type)
             return true;
         }
     }
-    return false:
+    return false;
 }
 
 Token Parser::consume(Token_type type , std::string messages)

@@ -114,7 +114,6 @@ void Lexer::scanToken()
         return;
     }
 
-
     if(IsAlpha(c))
     {
         Identifier();

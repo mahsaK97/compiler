@@ -91,7 +91,7 @@ public:
 class Printstms :public Stms
 {
 public:
-    std::unique_ptr<Expr> Expression;
+    std::unique_ptr<Expr> expression;
 
 };
 
@@ -107,7 +107,7 @@ public:
 class BlockStms :public Stms
 {
 public:
-    std::vector<std::unique_ptr<Stms>> Statement;
+    std::vector<std::unique_ptr<Stms>> statement;
 };
 
 
@@ -145,7 +145,7 @@ public:
 class Parser
 {
 public:
-    Parser(::std::vector<Token> tokens);
+    Parser(std::vector<Token> tokens);
     std::vector<std::unique_ptr<Stms>>parser();
 
 private:
@@ -180,7 +180,7 @@ private:
 
 
 
-    bool match(std::vector<Token_type> types);
+    bool match(const std::vector<Token_type> &types);
     bool check(Token_type type);
 
     Token advance();
