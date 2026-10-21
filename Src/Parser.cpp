@@ -56,14 +56,14 @@ std::unique_ptr<Expr> Parser::primary()
     if(match ({Token_type::NUMBER, Token_type::STRING}))
         {
             auto expr = std::make_unique<LiteralExpr>();
-            expr -> value = previous().lexeme();
-            expr -> type = previous().type();
+            expr -> value = previous().lexeme;
+            expr -> type = previous().type;
             return expr;
         }
 
     if match(({Token_type::TRUE, Token_type::FALSE}))
         {
-            auto expr =std::make_unique<literalExpr>();
+            auto expr =std::make_unique<LiteralExpr>();
             expr ->value = previous().lexeme();
             expr ->type = previous().type();
             return expr;
@@ -71,7 +71,7 @@ std::unique_ptr<Expr> Parser::primary()
 
     if(match({Token_type::IDENTIFIER}))
         {
-            auto expr= std::make_unique<variableExpr>();
+            auto expr= std::make_unique<VariableExpr>();
             expr ->name= previous;
             return expr;
         }
@@ -95,7 +95,7 @@ std::unique_ptr<Expr> Parser::primary()
                     }
                     while(match({Token_type::COMMA}));
                 }
-            consum(Token_type::RIGHT_BRACKET, "EXCEPT ']' AFTER STATEMENT.");
+            consume(Token_type::RIGHT_BRACKET, "EXCEPT ']' AFTER STATEMENT.");
             return arr;
         }
         throw std::runtime_error("except a statement.");
@@ -113,7 +113,7 @@ std::unique_ptr<Expr> Parser::term()
         {
             Token op = previous();
             auto right = factor();
-            auto binary =  std::make_unique<binaryExpr>();
+            auto binary =  std::make_unique<BinaryExpr>();
             binary->left= std::move(expr);
             binary->op = op;
             binary->right = std::move(right);
