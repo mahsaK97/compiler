@@ -111,7 +111,7 @@ std::unique_ptr<Expr> Parser::term()
     auto expr =factor();
     while(match({Token_type::PLUS, Token_type::MINUS}))
         {
-            Token op = previous;
+            Token op = previous();
             auto right = factor();
             auto binary =  std::make_unique<binaryExpr>();
             binary->left= std::move(expr);
