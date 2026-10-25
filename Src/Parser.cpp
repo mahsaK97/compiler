@@ -1,4 +1,6 @@
 #include "../Include/Parser.h"
+#include <stdexcept>
+
 
 bool Parser::isAtEnd()
 {
