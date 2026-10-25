@@ -45,6 +45,7 @@ enum class Token_type
 
    LET,
    STRING_TYPE,
+   NUMBER_TYPE,
    BOOL,
    FUNCTION,
    RETURN,
@@ -62,6 +63,8 @@ enum class Token_type
 class Token
 {
 public:
+
+
     Token_type type;
     std::string lexeme;
     std::string literal;
@@ -74,6 +77,8 @@ public:
          std::string literal,
          int line
     );
+
+    :type(Token_type::END_OF_FILE), lexeme(""), literal(""), line(0){}
 
 
 };

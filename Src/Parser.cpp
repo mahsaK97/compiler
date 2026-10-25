@@ -123,7 +123,7 @@ std::unique_ptr<Expr> Parser::term()
         return expr;
 }
 
-std::unique_ptr<Stms>Parser::statement()
+std::unique_ptr<Stms>Parser::Statement()
 {
     if(match({Token_type::PRINT})) return printStatement;
     if(match({Token_type::IF})) return ifStatement;
