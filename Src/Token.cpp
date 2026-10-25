@@ -9,7 +9,7 @@ Token::Token(
              std::string literal,
              int line
 
-) }
+)
 
 
    :type(type),
