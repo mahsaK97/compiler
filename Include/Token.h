@@ -78,7 +78,7 @@ public:
          int line
     );
 
-    :type(Token_type::END_OF_FILE), lexeme(""), literal(""), line(0){}
+    Token() :type(Token_type::END_OF_FILE), lexeme(""), literal(""), line(0){}
 
 
 };
