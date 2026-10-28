@@ -81,7 +81,7 @@ std::unique_ptr<Expr> Parser::primary()
     if(match({Token_type::LEFT_PAREN}))
         {
             auto expr = expression();
-            consum(Token_type::RIGHT_PAREN,"EXCEPT ')' AFTER STATEMENT.");
+            consume(Token_type::RIGHT_PAREN,"EXCEPT ')' AFTER STATEMENT.");
             return expr;
         }
 
