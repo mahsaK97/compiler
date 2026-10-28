@@ -66,8 +66,8 @@ std::unique_ptr<Expr> Parser::primary()
     if (match({Token_type::TRUE, Token_type::FALSE}))
         {
             auto expr =std::make_unique<LiteralExpr>();
-            expr ->value = previous().lexeme();
-            expr ->type = previous().type();
+            expr ->value = previous().lexeme;
+            expr ->type = previous().type;
             return expr;
         }
 
