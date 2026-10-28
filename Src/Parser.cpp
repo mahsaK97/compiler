@@ -34,7 +34,7 @@ bool Parser::match(std::vector<Token_type> type)
 {
     for(Token_type: type)
     {
-        if(check(type))
+        if(check(t))
         {
             advance();
             return true;
