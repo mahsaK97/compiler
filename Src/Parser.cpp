@@ -74,7 +74,7 @@ std::unique_ptr<Expr> Parser::primary()
     if(match({Token_type::IDENTIFIER}))
         {
             auto expr= std::make_unique<VariableExpr>();
-            expr ->name= previous;
+            expr ->name= previous();
             return expr;
         }
 
