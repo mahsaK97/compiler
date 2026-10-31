@@ -30,11 +30,11 @@ bool Parser::check(Token_type type)
     return peek().type == type;
 }
 
-bool Parser::match(std::vector<Token_type> type)
+bool Parser::match(const std::vector<Token_type> &type)
 {
-    for(Token_type: type)
+    for(Token_type typ: types)
     {
-        if(check(t))
+        if(check(type))
         {
             advance();
             return true;
