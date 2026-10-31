@@ -88,7 +88,7 @@ std::unique_ptr<Expr> Parser::primary()
     if(match({Token_type::LEFT_BRACKET}))
         {
             auto arr = std::make_unique<ArrayExpr>();
-            if(!check({Token_type::RIGHT_BRACKET}))
+            if(!check(Token_type::RIGHT_BRACKET))
                 {
                     do
                     {
