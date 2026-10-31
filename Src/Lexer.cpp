@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdexcept>
 
 #include "../Include/Lexer.h"
 #include "../Include/Token.h"
