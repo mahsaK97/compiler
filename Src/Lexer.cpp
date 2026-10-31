@@ -248,9 +248,9 @@ void Lexer::scanToken()
 
 
         default:
-            std::cerr << "Unexpected character '" << c
-            <<"'at line"<<line<<std::endl;
-            break;
+            throw runtime_error("Unexpected character '"
+                                + std::string c +
+                                "' at line " + line);
 
 
     }
