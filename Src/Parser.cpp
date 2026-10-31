@@ -133,6 +133,8 @@ std::unique_ptr<Stms>Parser::Statement()
     if(match({Token_type::FUNCTION})) return functionDeclStatement();
     if(match({Token_type::RETURN})) return returnStatement();
 
+    throw std::runtime_error("unexpected token in statement");
+
 
 }
 
