@@ -15,7 +15,7 @@ std::vector<Token> Lexer::scanTokens()
 {
     start = 0;
     current = 0;
-    line = 0;
+    line = 1;
     tokens.clear();
 
 
