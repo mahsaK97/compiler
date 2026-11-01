@@ -366,6 +366,11 @@ void Lexer::Identifier()
         AddToken(Token_type::STRING_TYPE);
     }
 
+    else if(text == "number")
+    {
+        AddToken(Token_type::NUMBER);
+    }
+
     else if(text == "bool")
     {
         AddToken(Token_type::BOOL);
