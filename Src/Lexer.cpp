@@ -324,8 +324,8 @@ void Lexer::String()
 
     if(IsAtEnd())
        {
-           std::cerr<< "Unterminated string at line"
-           << line<< std::endl;
+           throw std::runtime_error("Unterminated string at line "
+           + to_string(line));
 
            return;
        }
