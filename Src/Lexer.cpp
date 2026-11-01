@@ -13,6 +13,12 @@ Lexer::Lexer(std::string source)
 
 std::vector<Token> Lexer::scanTokens()
 {
+    start = 0;
+    current = 0;
+    line = 0;
+    tokens.clear();
+
+
     while(!IsAtEnd())
     {
         start = current;
