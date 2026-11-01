@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdexcept>
+#include <string>
 
 #include "../Include/Lexer.h"
 #include "../Include/Token.h"
@@ -325,9 +326,8 @@ void Lexer::String()
     if(IsAtEnd())
        {
            throw std::runtime_error("Unterminated string at line "
-           + to_string(line));
+           + std::to_string(line));
 
-           return;
        }
 
        advance();
