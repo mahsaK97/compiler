@@ -229,8 +229,9 @@ void Lexer::scanToken()
 
              else
             {
-                std::cerr << "Unexpected '&' at line "
-                << line << std::endl;
+                throw std::runtime_error("Unexpected '&' at line "
+                 + std::to_string(line)
+                 + " did you mean '&&'?");
             }
 
             break;
