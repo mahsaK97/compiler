@@ -125,6 +125,25 @@ std::unique_ptr<Expr> Parser::term()
         return expr;
 }
 
+std::unique_ptr<Expr> Parser::factor()
+{
+    auto expr= unary();
+    while(match({Token_type::STAR, Token_type::SLASH}))
+        {
+            Token op = previous();
+            auto right = unary();
+
+            auto binary = std::make_unique<BinaryExpr>();
+            binary->left =std::move(expr);
+            binary->op = op;
+            binary-> right=std::move(right);
+            expr=std::move(binary);
+        }
+
+    return expr;
+}
+
+
 std::unique_ptr<Stms>Parser::Statement()
 {
     if(match({Token_type::PRINT})) return PrintStatement();
