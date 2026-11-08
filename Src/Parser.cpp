@@ -154,10 +154,10 @@ std::unique_ptr<Expr> Parser::comparsion()
 
 
                         auto binary = std::make_unique<BinaryExpr>();
-                        expr= move(binary);
                         binary->left = std::move(expr);
                         binary->op = op;
                         binary-> right = std::move(right);
+                        expr= move(binary);
 
                     }
 
@@ -165,7 +165,6 @@ std::unique_ptr<Expr> Parser::comparsion()
     return expr;
 
 }
-
 
 
 std::unique_ptr<Stms>Parser::Statement()
