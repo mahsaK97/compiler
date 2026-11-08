@@ -143,6 +143,30 @@ std::unique_ptr<Expr> Parser::factor()
     return expr;
 }
 
+std::unique_ptr<Expr> Parser::comparsion()
+{
+    auto expr = term();
+    while(match({Token_type::GREATER , Token_type::LESS,
+                Token_type::GREATER_EQUAL, Token_type::LESS_EQUAL}))
+                    {
+                        Token op =previous();
+                        auto right = term();
+
+
+                        auto binary = std::make_unique<BinaryExpr>();
+                        expr= move(binary);
+                        binary->left = std::move(expr);
+                        binary->op = op;
+                        binary-> right = std::move(right);
+
+                    }
+
+
+    return expr;
+
+}
+
+
 
 std::unique_ptr<Stms>Parser::Statement()
 {
