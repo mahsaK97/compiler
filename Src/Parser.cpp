@@ -186,6 +186,24 @@ std::unique_ptr<Expr> Parser::equality()
         return expr;
 }
 
+std::unique_ptr<Expr> Parser::logicAnd()
+{
+    auto expr = equality();
+    while(match({Token_type::AND_AND}))
+        {
+            Token op = previous();
+            auto right = equality();
+
+            auto binary = std::make_unique<BinaryExpr>();
+            binary-> left = std::move(expr);
+            binary->op = op;
+            binary->right = std::move(right);
+            expr = move(binary);
+        }
+
+        return expr;
+}
+
 
 std::unique_ptr<Stms>Parser::Statement()
 {
