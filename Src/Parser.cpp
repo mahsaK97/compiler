@@ -205,6 +205,26 @@ std::unique_ptr<Expr> Parser::logicAnd()
 }
 
 
+
+std::unique_ptr<Expr> Parser::logicOr()
+{
+    auto expr = logicAnd();
+    while(match({Token_type::OR_OR}))
+        {
+            Token op = previous();
+            auto right = logicAnd();
+            auto binary = std::make_unique<BinaryExpr>();
+            binary->left = std::move(expr);
+            binary->op = op;
+            binary->right = std::move(right);
+
+            expr = move(binary);
+
+        }
+
+        return expr;
+}
+
 std::unique_ptr<Stms>Parser::Statement()
 {
     if(match({Token_type::PRINT})) return PrintStatement();
