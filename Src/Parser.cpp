@@ -160,10 +160,30 @@ std::unique_ptr<Expr> Parser::comparsion()
                         expr= move(binary);
 
                     }
-
-
     return expr;
 
+}
+
+
+
+
+std::unique_ptr<Expr> Parser::equality()
+{
+    auto expr = comparsion();
+    while(match({Token_type::BANG_EQUAL, Token_type::EQUAL_EQUAL}))
+        {
+            Token op = previous();
+             auto right = comparsion();
+
+             auto binary= std::make_unique<BinaryExpr>();
+
+             binary->left =std::move(expr);
+             binary->op = op;
+             binary-> right = move(right);
+             expr = move(binary);
+        }
+
+        return expr;
 }
 
 
