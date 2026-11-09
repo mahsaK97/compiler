@@ -171,7 +171,7 @@ private:
     std::unique_ptr<Expr> logicOr();
     std::unique_ptr<Expr> logicAnd();
     std::unique_ptr<Expr> equality();
-    std::unique_ptr<Expr> comparison();
+    std::unique_ptr<Expr> comparsion();
     std::unique_ptr<Expr> term();
     std::unique_ptr<Expr> factor();
     std::unique_ptr<Expr> unary();
