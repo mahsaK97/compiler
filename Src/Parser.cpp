@@ -224,6 +224,31 @@ std::unique_ptr<Expr> Parser::logicOr()
         return expr;
 }
 
+std::unique_ptr<Expr> Parser::assignment()
+{
+    auto expr =logicOr();
+    if(match({Token_type::EQUAL}))
+        {
+            Token equals = previous();
+            auto value = assignment();
+
+            VariableExpr *var = dynamic_cast<VariableExpr*>(expr,get());
+            if(var)
+            {
+                auto assign = std::make_unique<AssignExpr>();
+                assign.name = var.name;
+                assign.value = std::move(value);
+                return assign;
+
+
+
+            throw std::runtime_error(
+                                     "syntax error in line " + std::to_string(equals.line) +
+            ": invalid assignment target.");)
+        }
+
+        return value;
+}
 
 std::unique_ptr<Stms>Parser::Statement()
 {
