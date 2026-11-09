@@ -179,8 +179,8 @@ std::unique_ptr<Expr> Parser::equality()
 
              binary->left =std::move(expr);
              binary->op = op;
-             binary-> right = move(right);
-             expr = move(binary);
+             binary-> right = std::move(right);
+             expr = std::move(binary);
         }
 
         return expr;
@@ -205,7 +205,6 @@ std::unique_ptr<Expr> Parser::logicAnd()
 }
 
 
-
 std::unique_ptr<Expr> Parser::logicOr()
 {
     auto expr = logicAnd();
@@ -224,6 +223,7 @@ std::unique_ptr<Expr> Parser::logicOr()
 
         return expr;
 }
+
 
 std::unique_ptr<Stms>Parser::Statement()
 {
