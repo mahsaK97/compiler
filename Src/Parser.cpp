@@ -250,7 +250,10 @@ std::unique_ptr<Expr> Parser::assignment()
         return expr;
 }
 
-
+std::unique_ptr<Expr>exression()
+{
+    return assignment();
+}
 
 
 std::unique_ptr<Stms>Parser::Statement()
