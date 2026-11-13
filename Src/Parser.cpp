@@ -244,7 +244,7 @@ std::unique_ptr<Expr> Parser::assignment()
 
             throw std::runtime_error(
                                      "syntax error in line " + std::to_string(equals.line) +
-            ": invalid assignment target.");)
+            ": invalid assignment target.");
         }
 
         return expr;
