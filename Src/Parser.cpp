@@ -250,7 +250,7 @@ std::unique_ptr<Expr> Parser::assignment()
         return expr;
 }
 
-std::unique_ptr<Expr>exression()
+std::unique_ptr<Expr> expression()
 {
     return assignment();
 }
