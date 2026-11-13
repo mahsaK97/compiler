@@ -239,7 +239,7 @@ std::unique_ptr<Expr> Parser::assignment()
                 assign->name = var.name;
                 assign->value = std::move(value);
                 return assign;
-
+            }
 
 
             throw std::runtime_error(
