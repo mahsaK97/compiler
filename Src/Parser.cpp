@@ -236,8 +236,8 @@ std::unique_ptr<Expr> Parser::assignment()
             if(var)
             {
                 auto assign = std::make_unique<AssignExpr>();
-                assign.name = var.name;
-                assign.value = std::move(value);
+                assign->name = var.name;
+                assign->value = std::move(value);
                 return assign;
 
 
