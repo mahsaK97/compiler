@@ -217,7 +217,7 @@ std::unique_ptr<Expr> Parser::logicOr()
             binary->op = op;
             binary->right = std::move(right);
 
-            expr = move(binary);
+            expr =std::move(binary);
 
         }
 
