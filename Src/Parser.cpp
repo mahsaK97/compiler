@@ -232,7 +232,7 @@ std::unique_ptr<Expr> Parser::assignment()
             Token equals = previous();
             auto value = assignment();
 
-            VariableExpr *var = dynamic_cast<VariableExpr*>(expr,get());
+            VariableExpr *var = dynamic_cast<VariableExpr*>(expr.get());
             if(var)
             {
                 auto assign = std::make_unique<AssignExpr>();
