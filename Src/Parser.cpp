@@ -106,6 +106,25 @@ std::unique_ptr<Expr> Parser::primary()
 
 
 
+std::unique_ptr<Expr> Parser::unary()
+{
+    if(match(Token_type::BANG, Token_type::MINUS))
+    {
+        Token op=previous();
+
+        auto right = unary();
+
+        auto expr =std::make_unique<UnaryExpr>();
+        expr->op = op;
+        expr->right = std::move(right);
+
+        return expr;
+    }
+
+    return primary();
+}
+
+
 
 
 std::unique_ptr<Expr> Parser::term()
