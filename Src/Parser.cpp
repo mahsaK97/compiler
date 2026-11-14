@@ -268,7 +268,7 @@ std::unique_ptr<Expr> Parser::assignment()
         return expr;
 }
 
-std::unique_ptr<Expr> expression()
+std::unique_ptr<Expr> Parser::expression()
 {
     return assignment();
 }
