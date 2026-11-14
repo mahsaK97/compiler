@@ -175,7 +175,7 @@ std::unique_ptr<Expr> Parser::comparsion()
                         binary->left = std::move(expr);
                         binary->op = op;
                         binary-> right = std::move(right);
-                        expr= move(binary);
+                        expr= std::move(binary);
 
                     }
     return expr;
@@ -216,7 +216,7 @@ std::unique_ptr<Expr> Parser::logicAnd()
             binary-> left = std::move(expr);
             binary->op = op;
             binary->right = std::move(right);
-            expr = move(binary);
+            expr = std::move(binary);
         }
 
         return expr;
