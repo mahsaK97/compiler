@@ -105,10 +105,9 @@ std::unique_ptr<Expr> Parser::primary()
 
 
 
-
 std::unique_ptr<Expr> Parser::unary()
 {
-    if(match(Token_type::BANG, Token_type::MINUS))
+    if(match({Token_type::BANG, Token_type::MINUS}))
     {
         Token op=previous();
 
