@@ -103,7 +103,23 @@ std::unique_ptr<Expr> Parser::primary()
         throw std::runtime_error("except a statement.");
 }
 
+std::unique_ptr<Expr> Parser::finishCall(std::unique_ptr<Expr> callee)
+{
+    auto call= std::make_unique<CallExpr>();
+    call->callee=std::move(callee);
 
+    if(!check({Token_type::RIGHT_PAREN}))
+        {
+            do
+            {
+                call->arguments.push_back(expression());
+            }
+            while(match({Token_type::COMMA}));
+        }
+
+        consume({Token_type::RIGHT_PAREN},"Expect ')' after arguments.");
+        return call;
+}
 
  std::unique_ptr<Expr> Parser::call()
 {
