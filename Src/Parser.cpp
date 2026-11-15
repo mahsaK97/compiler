@@ -140,7 +140,7 @@ std::unique_ptr<Expr> Parser::finishCall(std::unique_ptr<Expr> callee)
 
 
                 auto indexExpr=std::make_unique<IndexExpr>();
-                indexExpr->object= std::move(expr);
+                indexExpr->array= std::move(expr);
                 indexExpr->index=  std::move(index);
 
                 expr =std::move(indexExpr);
