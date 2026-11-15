@@ -105,6 +105,44 @@ std::unique_ptr<Expr> Parser::primary()
 
 
 
+ std::unique_ptr<Expr> Parser::call()
+{
+    auto expr = primary();
+
+    while(true)
+    {
+         if(match({Token_type::LEFT_PAREN}))
+            {
+                expr=finishCall(std::move(expr));
+            }
+
+        else if(match({Token_type::LEFT_BRACKET}))
+            {
+                auto expr = expression();
+
+                consume(Token_type::RIGHT_BRACKET,  "Expect ']' after index.");
+
+
+                auto indexExpr=std::make_unique<IndexExpr>();
+                indexExpr->object= std::move(expr);
+                indexExpr->index=  std::move(index);
+
+                expr =std::move(indexExpr);
+
+            }
+
+            else
+            {
+                break;
+            }
+    }
+
+    return expr;
+}
+
+
+
+
 std::unique_ptr<Expr> Parser::unary()
 {
     if(match({Token_type::BANG, Token_type::MINUS}))
@@ -120,7 +158,7 @@ std::unique_ptr<Expr> Parser::unary()
         return expr;
     }
 
-    return primary();
+    return call();
 }
 
 
