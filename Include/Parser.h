@@ -176,7 +176,7 @@ private:
     std::unique_ptr<Expr> factor();
     std::unique_ptr<Expr> unary();
     std::unique_ptr<Expr> call();
-    std::unique_ptr<Expr> finishcall(std::unique_ptr<Expr>callee)
+    std::unique_ptr<Expr> finishCall(std::unique_ptr<Expr>callee);
     std::unique_ptr<Expr> primary();
 
 
