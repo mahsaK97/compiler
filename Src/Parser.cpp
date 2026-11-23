@@ -134,7 +134,7 @@ std::unique_ptr<Expr> Parser::finishCall(std::unique_ptr<Expr> callee)
 
         else if(match({Token_type::LEFT_BRACKET}))
             {
-                auto indx = expression();
+                auto index = expression();
 
                 consume(Token_type::RIGHT_BRACKET,  "Expect ']' after index.");
 
